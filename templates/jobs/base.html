@@ -1,13 +1,16 @@
 <!doctype html>
+{% load staticfiles %}
+
 <html lang="en">
 <head>
+
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
     <meta content="" name="description">
     <meta content="" name="author">
     <link href="/docs/4.0/assets/img/favicons/favicon.ico" rel="icon">
 
-    <title>Album example for Bootstrap</title>
+    <title>Portfolio Main</title>
 
     <link href="https://getbootstrap.com/docs/4.0/examples/album/" rel="canonical">
 
@@ -16,23 +19,25 @@
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="album.css" rel="stylesheet">
+    <link href="{% static 'css/album.css'%}" rel="stylesheet">
 </head>
 
 <body>
 
 <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Frank Delaney</a>
-        <button aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
+        <a class="navbar-brand" href="{% url 'jobs_home' %}">Portfolio</a>
+        <button aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation"
+                class="navbar-toggler"
                 data-target="#navbarNavAltMarkup" data-toggle="collapse" type="button">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav ml-auto">
                 <a class="nav-item nav-link" href="#">Twitter</a>
-                <a class="nav-item nav-link" href="#">Resume</a>
-                <a class="nav-item nav-link" href="#">Blog</a>
+                <a class="nav-item nav-link" href="{% static 'jobs/resume.pdf' %}">Resume</a>
+                <a class="nav-item nav-link" href="{% url 'jobs_home' %}">Jobs</a>
+                <a class="nav-item nav-link" href="{% url 'blog_home' %}">Blog</a>
             </div>
         </div>
     </nav>
@@ -42,39 +47,25 @@
 
     <section class="jumbotron text-center">
         <div class="container">
-            <h1 class="jumbotron-heading">Hi, my name is Ivan</h1>
+            <h3 class="jumbotron-heading">Ivan</h3>
             <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator,
                 etc. Make it short and sweet, but not too short so folks don't simply skip over it entirely.</p>
             <p>
                 <a class="btn btn-primary my-2" href="mailto:idiallo@gwu.edu">Email</a>
 
             </p>
+            <img src="{% static 'jobs/img/ivan.jpg' %}" />
         </div>
     </section>
 
-    <div class="album py-5 bg-light">
-        <div class="container">
-            <div class="row">
-                  {% for job in jobs %}
-                <div class="col-md-4">
-                    <div class="card mb-4 box-shadow">
-                        <img alt="Card image cap"
-                             class="card-img-top" src="{{job.image.url}}">
-                        <div class="card-body">
-                            <p class="card-text">{{job.summary}}</p>
-                        </div>
-                    </div>
-                </div>
-                 {% endfor %}
-            </div>
-        </div>
-    </div>
+    {% block content %}
+    {% endblock %}
 
 </main>
 
 <footer class="text-muted">
     <div class="container text-center">
-        <p>© Ivan Delaney  {% now "Y" %}</p>
+        <p>© Ivan Delaney {% now "Y" %}</p>
     </div>
 </footer>
 

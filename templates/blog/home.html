@@ -1,0 +1,18 @@
+{% extends 'jobs/base.html' %}
+{% block content %}
+<div class="container">
+   <h2 class="text-center pt-3">Welcome to Ivan's Blog Post</h2>
+   <br/>
+    <h3>Lastest Post</h3>
+    <hr/>
+    {% for blog in blogs %}
+     <a href="{% url 'blog_detail' blog.pk %}"><h3>{{blog.title}}</h3></a>
+    {{blog.pub_date_pretty}}
+     <br/>
+     <img class="img-fluid" src="{{blog.image.url}}" height="200" width="200"/>
+    <br/>
+    <p>{{blog.summary}}</p>
+    {% endfor%}
+</div>
+
+{% endblock %}
